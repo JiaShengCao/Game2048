@@ -8,6 +8,7 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Button;
 import android.widget.GridLayout;
 
 import java.util.ArrayList;
@@ -36,17 +37,19 @@ public class GameView extends GridLayout {
 		initGameView();
 	}
 
-	private void initGameView(){
+	public void initGameView(){
 		setColumnCount(4);
 		setBackgroundColor(0xffbbada0);
-
-
 		setOnTouchListener(new View.OnTouchListener() {
 
-			private float startX,startY,offsetX,offsetY;
+			public float startX,startY,offsetX,offsetY;
 
 			@Override
 			public boolean onTouch(View v, MotionEvent event) {
+				if (MainActivity.getMainActivity().getrestare()){
+					startGame();
+					MainActivity.getMainActivity().setrestare(false);
+				}
 
 				switch (event.getAction()) {
 				case MotionEvent.ACTION_DOWN:
@@ -90,7 +93,7 @@ public class GameView extends GridLayout {
 		startGame();
 	}
 
-	private void addCards(int cardWidth,int cardHeight){
+	public void addCards(int cardWidth,int cardHeight){
 
 		Card c;
 
@@ -105,7 +108,7 @@ public class GameView extends GridLayout {
 		}
 	}
 
-	private void startGame(){
+	public void startGame(){
 
 		MainActivity.getMainActivity().clearScore();
 
@@ -119,7 +122,7 @@ public class GameView extends GridLayout {
 		addRandomNum();
 	}
 
-	private void addRandomNum(){
+	public void addRandomNum(){
 
 		emptyPoints.clear();
 
@@ -136,7 +139,7 @@ public class GameView extends GridLayout {
 	}
 
 
-	private void swipeLeft(){
+	public void swipeLeft(){
 
 		boolean merge = false;
 
@@ -172,7 +175,7 @@ public class GameView extends GridLayout {
 			checkComplete();
 		}
 	}
-	private void swipeRight(){
+	public void swipeRight(){
 
 		boolean merge = false;
 
@@ -242,7 +245,7 @@ public class GameView extends GridLayout {
 			checkComplete();
 		}
 	}
-	private void swipeDown(){
+	public void swipeDown(){
 
 		boolean merge = false;
 
@@ -277,7 +280,7 @@ public class GameView extends GridLayout {
 		}
 	}
 
-	private void checkComplete(){
+	public void checkComplete(){
 
 		boolean complete = true;
 
@@ -308,7 +311,7 @@ public class GameView extends GridLayout {
 
 	}
 
-	private Card[][] cardsMap = new Card[4][4];
-	private List<Point> emptyPoints = new ArrayList<Point>();
+	public Card[][] cardsMap = new Card[4][4];
+	public List<Point> emptyPoints = new ArrayList<Point>();
 }
 
