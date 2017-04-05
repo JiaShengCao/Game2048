@@ -1,2 +1,4 @@
 # Game2048
-still to be improve，change color and add animation
+## 介绍：
+
+   练手的小东西，刚开始还被逻辑搞混了，还是该自己一个一个代码的写
